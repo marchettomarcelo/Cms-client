@@ -1,0 +1,48 @@
+import axios from "axios"
+
+interface Post{
+    _id: string,
+    titulo: string,
+    conteudo: string,
+    __v: number
+}
+
+export const getStaticPaths = async () => {
+    
+    const requestDada = await axios.get("http://localhost:3001/post")
+    const createPaths = requestDada.data
+    
+    const paths = createPaths.map((post:Post) => {
+      return { params: { titulo: post.titulo } };
+    });
+  
+    return {
+      paths,
+      fallback: false,
+    };
+  };
+  
+  export const getStaticProps = async ({ params: { titulo }}: any) => {
+    
+
+    const {data} = await axios.get("http://localhost:3001/onepost", 
+        { params: { titulo } }
+    )
+    
+    return {
+      props: { post: data },
+    };
+  };
+  
+  const Page = ({ post }: any) => {
+    return (
+      <div>
+        
+        <div>{post.titulo}</div>
+        <div>{post.conteudo}</div>
+      </div>
+    );
+  };
+  
+  export default Page;
+  
