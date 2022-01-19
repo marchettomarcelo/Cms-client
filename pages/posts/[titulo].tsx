@@ -9,7 +9,7 @@ interface Post{
 
 export const getStaticPaths = async () => {
     
-    const requestDada = await axios.get("http://localhost:3001/post")
+    const requestDada = await axios.get("https://cms-ts-test-um.herokuapp.com/post")
     const createPaths = requestDada.data
     
     const paths = createPaths.map((post:Post) => {
@@ -25,7 +25,7 @@ export const getStaticPaths = async () => {
   export const getStaticProps = async ({ params: { titulo }}: any) => {
     
 
-    const {data} = await axios.get("http://localhost:3001/onepost", 
+    const {data} = await axios.get("https://cms-ts-test-um.herokuapp.com/onepost", 
         { params: { titulo } }
     )
     
