@@ -1,4 +1,5 @@
 import axios from "axios"
+import Image from "next/image"
 
 interface Post{
     _id: string,
@@ -33,11 +34,14 @@ export const getStaticPaths = async () => {
       props: { post: data },
     };
   };
-  
-  const Page = ({ post }: any) => {
+
+// import bgimage from "../../public/bgimage.jpeg"
+
+const Page = ({ post }: any) => {
     return (
-      <div>
-        
+      <div >
+       
+
         <div>{post.titulo}</div>
         <div>{post.conteudo}</div>
       </div>
