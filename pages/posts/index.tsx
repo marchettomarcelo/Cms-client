@@ -30,7 +30,7 @@ function Mpp({post}:any) {
   
 
   export const getStaticProps = async () => {
-    const {data} = await axios.get("http://localhost:3001/post") 
+    const {data} = await axios.get(`${process.env.FETCHING_URL}/post`) 
     const soUrls = data.map((post:any)=>{
       return post.titulo
     })
