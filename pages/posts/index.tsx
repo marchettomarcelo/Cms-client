@@ -9,6 +9,10 @@ function Mpp({post}:any) {
 
         
         {post.map((titulo:any, id:number)=>{
+          if(titulo.substring(0,5) === "00000" && titulo.substring(25,30)){
+            return
+        }
+
           return (
             <ul className="bg-yellow-100 text-blue-800 my-4 cursor-pointer" key={id}>
               <Link href={`/posts/${titulo}`} passHref>

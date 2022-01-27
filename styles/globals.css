@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hed {
+  position: sticky;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  background-color: antiquewhite;
+  height: 6rem;
+}
+
+.sp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+}
