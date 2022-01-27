@@ -1,5 +1,7 @@
+import Link from "next/link";
 import axios from "axios"
 import Image from "next/image"
+import HeaderComponent from "../../Components/Header"
 
 interface Post{
     _id: string,
@@ -10,7 +12,7 @@ interface Post{
 
 export const getStaticPaths = async () => {
     
-    const requestDada = await axios.get("https://cms-ts-test-um.herokuapp.com/post")
+    const requestDada = await axios.get("http://localhost:3001/post")
     const createPaths = requestDada.data
     
     const paths = createPaths.map((post:Post) => {
@@ -26,7 +28,7 @@ export const getStaticPaths = async () => {
   export const getStaticProps = async ({ params: { titulo }}: any) => {
     
 
-    const {data} = await axios.get("https://cms-ts-test-um.herokuapp.com/onepost", 
+    const {data} = await axios.get(`${process.env.FETCHING_URL}/onepost`, 
         { params: { titulo } }
     )
     
@@ -39,12 +41,22 @@ export const getStaticPaths = async () => {
 
 const Page = ({ post }: any) => {
     return (
-      <div >
+      <>
+      <HeaderComponent />
+      <div>
        
 
         <div>{post.titulo}</div>
         <div>{post.conteudo}</div>
+
+        <Link href="/posts">
+          <div className="bg-red-500 cursor-pointer p-2">
+            <a className="font-semibold text-4xl">Post page</a>
+          </div>
+        </Link>
+        
       </div>
+      </>
     );
   };
   
