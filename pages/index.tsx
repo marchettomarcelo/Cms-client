@@ -14,6 +14,7 @@ const Home: NextPage = () => {
     </Head>
 
     <Image 
+    alt="gradient"
     src={grad} 
     width={200} 
     height={100}
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
 
     <div className="relative z-20 flex flex-col justify-center items-center">
       <h1 className="text-blue-800 font-semibold text-7xl">GM</h1>
-      <Link href="/posts">
+      <Link href="/posts" passHref>
         <a className="font-semibold text-4xl">Post Page</a>
       </Link>
     </div>

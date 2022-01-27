@@ -49,7 +49,7 @@ const Page = ({ post }: any) => {
         <div>{post.titulo}</div>
         <div>{post.conteudo}</div>
 
-        <Link href="/posts">
+        <Link href="/posts" passHref>
           <div className="bg-red-500 cursor-pointer p-2">
             <a className="font-semibold text-4xl">Post page</a>
           </div>

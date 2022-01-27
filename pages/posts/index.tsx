@@ -8,16 +8,16 @@ function Mpp({post}:any) {
       <h1>Voce conseguiu Men, Voce é brabo, agr vai var os posts</h1>
 
         
-        {post.map((titulo:any)=>{
+        {post.map((titulo:any, id:number)=>{
           return (
-            <ul className="bg-yellow-100 text-blue-800 my-4 cursor-pointer">
-              <Link href={`/posts/${titulo}`}>
+            <ul className="bg-yellow-100 text-blue-800 my-4 cursor-pointer" key={id}>
+              <Link href={`/posts/${titulo}`} passHref>
               <a>{titulo}</a>
               </Link>
             </ul>
           )})}
 
-        <Link href="/">
+        <Link href="/" passHref>
           <a className="font-semibold text-4xl">Main Page</a>
         </Link>
         
