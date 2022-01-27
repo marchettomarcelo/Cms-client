@@ -12,10 +12,9 @@ interface Post{
 
 export const getStaticPaths = async () => {
     
-    const requestDada = await axios.get(`${process.env.FETCHING_URL}/post`)
-    const createPaths:any[] = requestDada.data
+    const {data} = await axios.get(`${process.env.FETCHING_URL}/post`)
     
-    const paths = createPaths.map((post:Post) => {
+    const paths = data.map((post:Post) => {
       return { params: { titulo: post.titulo } };
     });
   
