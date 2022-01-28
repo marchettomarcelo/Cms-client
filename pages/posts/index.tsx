@@ -36,8 +36,11 @@ function Mpp({post}:any) {
   export const getStaticProps = async () => {
     const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`) 
     
-    const soUrls = data.map(({titulo}:any)=>{
-      return titulo.replaceAll("-", " ")
+    const soUrls = data.map((post:any)=>{
+      const tit:string = post.titulo
+      const titFormatado = tit.replaceAll("-", "")
+      
+      return titFormatado
     })
 
     return {
