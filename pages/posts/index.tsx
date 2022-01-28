@@ -37,7 +37,7 @@ function Mpp({post}:any) {
     const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`) 
     
     const soUrls = data.map(({titulo}:any)=>{
-      return titulo.replace("-", " ")
+      return titulo.replaceAll("-", " ")
     })
 
     return {
