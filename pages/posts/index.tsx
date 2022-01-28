@@ -35,11 +35,20 @@ function Mpp({post}:any) {
 
   export const getStaticProps = async () => {
     const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`) 
-    
+
+    function escapeRegExp(string:string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    }
+
+    function ReplaceAll(str: string, find:string, replace: string) {
+      return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+    }
+
     const soUrls = data.map((post:any)=>{
       const tit:string = post.titulo
-      const titFormatado = tit.replaceAll("-", "")
-      
+      const titFormatado = ReplaceAll(tit ,"-", " ")
+      console.log(titFormatado)
+
       return titFormatado
     })
 
