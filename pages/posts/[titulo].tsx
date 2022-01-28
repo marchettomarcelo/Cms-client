@@ -12,7 +12,7 @@ interface Post{
 
 export const getStaticPaths = async () => {
     
-    const {data} = await axios.get(`${process.env.FETCHING_URL}/post`)
+    const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`)
     const arr = Array.from(data)
     
     const paths = arr.map((post:any) => {
@@ -47,7 +47,7 @@ const Page = ({ post }: any) => {
        
 
         <div>{post.titulo}</div>
-        <div>{post.conteudo}</div>
+        <div className="whitespace-pre-wrap indent-8">{post.conteudo}</div>
 
         <Link href="/posts" passHref>
           <div className="bg-red-500 cursor-pointer p-2">

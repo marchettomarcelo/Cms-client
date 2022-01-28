@@ -15,9 +15,8 @@ const Home: NextPage = () => {
 
     <Image 
     alt="gradient"
-    src={grad} 
-    width={200} 
-    height={100}
+    src={grad}
+    priority 
     className="z-0"
     layout="fill" />
 
