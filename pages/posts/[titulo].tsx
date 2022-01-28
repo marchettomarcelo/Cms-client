@@ -16,6 +16,7 @@ export const getStaticPaths = async () => {
     const arr = Array.from(data)
     
     const paths = arr.map((post:any) => {
+      
       return { params: { titulo: post.titulo } };
     });
   
