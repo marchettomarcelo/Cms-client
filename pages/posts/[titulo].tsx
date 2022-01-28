@@ -27,8 +27,6 @@ export const getStaticPaths = async () => {
   };
   
   export const getStaticProps = async ({ params: { titulo }}: any) => {
-    
-
     const {data} = await axios.get(`${process.env.FETCHING_URL}/onepost`, 
         { params: { titulo } }
     )

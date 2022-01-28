@@ -1,6 +1,14 @@
 import axios from "axios";
 import Link from "next/link";
 
+function escapeRegExp(string:string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+function ReplaceAll(str: string, find:string, replace: string) {
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
+
 function Mpp({post}:any) {
     return (
     
@@ -13,9 +21,11 @@ function Mpp({post}:any) {
             return
         }
 
+          const tituloComHifen = ReplaceAll(titulo, " ", "-")
+
           return (
             <ul className="bg-yellow-100 text-blue-800 my-4 cursor-pointer" key={id}>
-              <Link href={`/posts/${titulo}`} passHref>
+              <Link href={`/posts/${tituloComHifen}`} passHref>
               <a>{titulo}</a>
               </Link>
             </ul>
@@ -36,19 +46,8 @@ function Mpp({post}:any) {
   export const getStaticProps = async () => {
     const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`) 
 
-    function escapeRegExp(string:string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-    }
-
-    function ReplaceAll(str: string, find:string, replace: string) {
-      return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
-    }
-
-    const soUrls = data.map((post:any)=>{
-      const tit:string = post.titulo
-      const titFormatado = ReplaceAll(tit ,"-", " ")
-      console.log(titFormatado)
-
+    const soUrls = data.map((post:any)=>{      
+      const titFormatado = ReplaceAll(post.titulo ,"-", " ")
       return titFormatado
     })
 
