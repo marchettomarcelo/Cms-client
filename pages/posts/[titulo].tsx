@@ -1,6 +1,6 @@
 import Link from "next/link";
 import axios from "axios"
-import Image from "next/image"
+// import Image from "next/image"
 import HeaderComponent from "../../Components/Header"
 
 interface Post{
@@ -12,12 +12,12 @@ interface Post{
 
 export const getStaticPaths = async () => {
     
-    const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`)
+    const { data } = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`)
     const arr = Array.from(data)
     
     const paths = arr.map((post:any) => {
       
-      return { params: { titulo: post.titulo } };
+      return { params: { titulo: post.path } };
     });
   
     return {
@@ -27,7 +27,8 @@ export const getStaticPaths = async () => {
   };
   
   export const getStaticProps = async ({ params: { titulo }}: any) => {
-    const {data} = await axios.get(`${process.env.FETCHING_URL}/onepost`, 
+
+    const { data } = await axios.get(`${process.env.FETCHING_URL}/onepost`, 
         { params: { titulo } }
     )
     
@@ -39,14 +40,20 @@ export const getStaticPaths = async () => {
 // import bgimage from "../../public/bgimage.jpeg"
 
 const Page = ({ post }: any) => {
+  
+  const {_id , path ,info ,publishOnNextBuild, HTMLContent} = post
+
     return (
       <>
       <HeaderComponent />
       <div>
        
 
-        <div>{post.titulo}</div>
-        <div className="whitespace-pre-wrap indent-8">{post.conteudo}</div>
+        <div>{path}</div>
+        <div className="whitespace-pre-wrap indent-8">{info}</div>
+
+        <div dangerouslySetInnerHTML={{__html: HTMLContent}}/>
+    
 
         <Link href="/posts" passHref>
           <div className="bg-red-500 cursor-pointer p-2">

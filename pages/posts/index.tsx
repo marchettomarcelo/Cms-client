@@ -16,17 +16,17 @@ function Mpp({post}:any) {
       <h1>Voce conseguiu Men, Voce é brabo, agr vai var os posts</h1>
 
         
-        {post.map((titulo:any, id:number)=>{
-          if(titulo.substring(0,5) === "00000" && titulo.substring(25,30)){
+        {post.map((path:any, id:number)=>{
+          if(path.substring(0,5) === "00000" && path.substring(25,30)){
             return
         }
 
-          const tituloComHifen = ReplaceAll(titulo, " ", "-")
+          const tituloComHifen = ReplaceAll(path, " ", "-")
 
           return (
             <ul className="bg-yellow-100 text-blue-800 my-4 cursor-pointer" key={id}>
               <Link href={`/posts/${tituloComHifen}`} passHref>
-              <a>{titulo}</a>
+              <a>{path}</a>
               </Link>
             </ul>
           )})}
@@ -47,7 +47,7 @@ function Mpp({post}:any) {
     const {data} = await axios.get(`${process.env.FETCHING_URL}/posts-for-publishing`) 
 
     const soUrls = data.map((post:any)=>{      
-      const titFormatado = ReplaceAll(post.titulo ,"-", " ")
+      const titFormatado = ReplaceAll(post.path ,"-", " ")
       return titFormatado
     })
 
