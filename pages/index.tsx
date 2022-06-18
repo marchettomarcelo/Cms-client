@@ -20,11 +20,13 @@ const Home: NextPage = () => {
     className="z-0"
     layout="fill" />
 
+
     <div className="relative z-20 flex flex-col justify-center items-center">
       <h1 className="text-blue-800 font-semibold text-7xl">GM</h1>
       <Link href="/posts" passHref>
         <a className="font-semibold text-4xl">Post Page</a>
       </Link>
+      oi
     </div>
   </div>
   )
