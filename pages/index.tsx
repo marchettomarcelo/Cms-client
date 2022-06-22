@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       <Link href="/posts" passHref>
         <a className="font-semibold text-4xl">Post Page</a>
       </Link>
-      oi
+      
     </div>
   </div>
   )
