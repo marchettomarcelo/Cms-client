@@ -46,14 +46,17 @@ const Page = ({ post }: any) => {
 
     return (
       <>
-      <div className="flex items-center justify-center flex-col gap-6">
       <HeaderComponent />
+      <div className="flex items-center justify-center flex-col gap-6">
        
         <div className="w-4/5 border-2 border-gray-400 rounded pl-6 p-4">
-
-        <ReactMarkdown>
-          {info}
-        </ReactMarkdown>
+        
+          <article className="prose prose-base w-full">
+            
+            <ReactMarkdown>
+              {info}
+            </ReactMarkdown>
+          </article>
         </div>
     
 
